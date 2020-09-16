@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>EasyAbp.Abp.DynamicQuery</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\EasyAbp.Abp.DynamicQuery.Application\EasyAbp.Abp.DynamicQuery.Application.csproj" />
+    <ProjectReference Include="..\EasyAbp.Abp.DynamicQuery.Domain.Tests\EasyAbp.Abp.DynamicQuery.Domain.Tests.csproj" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.6.1" />
+  </ItemGroup>
+
+</Project>
