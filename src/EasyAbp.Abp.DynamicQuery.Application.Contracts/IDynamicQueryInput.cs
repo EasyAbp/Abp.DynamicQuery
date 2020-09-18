@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using EasyAbp.Abp.DynamicQuery.Dtos;
 
 namespace EasyAbp.Abp.DynamicQuery
 {

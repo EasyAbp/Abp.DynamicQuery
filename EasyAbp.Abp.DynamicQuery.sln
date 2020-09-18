@@ -1,5 +1,4 @@
-﻿﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29001.49
 MinimumVisualStudioVersion = 10.0.40219.1
@@ -20,6 +19,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.Abp.DynamicQuery.EntityFrameworkCore.Tests", "test\EasyAbp.Abp.DynamicQuery.EntityFrameworkCore.Tests\EasyAbp.Abp.DynamicQuery.EntityFrameworkCore.Tests.csproj", "{527F645C-C1FC-406E-8479-81386C8ECF13}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.Abp.DynamicQuery.Domain.Tests", "test\EasyAbp.Abp.DynamicQuery.Domain.Tests\EasyAbp.Abp.DynamicQuery.Domain.Tests.csproj", "{E60895E5-79C4-447D-88B7-85CB5BA336A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.Abp.DynamicQuery.Application", "src\EasyAbp.Abp.DynamicQuery.Application\EasyAbp.Abp.DynamicQuery.Application.csproj", "{D908B38B-634C-4CD3-87A8-26062BE2C385}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +56,10 @@ Global
 		{E60895E5-79C4-447D-88B7-85CB5BA336A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E60895E5-79C4-447D-88B7-85CB5BA336A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E60895E5-79C4-447D-88B7-85CB5BA336A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D908B38B-634C-4CD3-87A8-26062BE2C385}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D908B38B-634C-4CD3-87A8-26062BE2C385}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D908B38B-634C-4CD3-87A8-26062BE2C385}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D908B38B-634C-4CD3-87A8-26062BE2C385}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,6 +72,7 @@ Global
 		{C5BB573D-3030-4BCB-88B7-F6A85C32766C} = {CCD2960C-23CC-4AB4-B84D-60C7AAA52F4D}
 		{527F645C-C1FC-406E-8479-81386C8ECF13} = {CCD2960C-23CC-4AB4-B84D-60C7AAA52F4D}
 		{E60895E5-79C4-447D-88B7-85CB5BA336A4} = {CCD2960C-23CC-4AB4-B84D-60C7AAA52F4D}
+		{D908B38B-634C-4CD3-87A8-26062BE2C385} = {649A3FFA-182F-4E56-9717-E6A9A2BEC545}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4324B3B4-B60B-4E3C-91D8-59576B4E26DD}

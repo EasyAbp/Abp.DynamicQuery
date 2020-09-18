@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace EasyAbp.Abp.DynamicQuery
+namespace EasyAbp.Abp.DynamicQuery.Dtos
 {
     public class DynamicQueryFilter
     {
@@ -8,7 +8,7 @@ namespace EasyAbp.Abp.DynamicQuery
         public string FieldName { get; set; }
         
         [Required]
-        public DynamicQueryOperator DynamicQueryOperator { get; set; }
+        public DynamicQueryOperator Operator { get; set; }
         
         [Required]
         public string Value { get; set; }

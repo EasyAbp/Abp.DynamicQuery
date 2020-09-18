@@ -3,7 +3,7 @@
 namespace EasyAbp.Abp.DynamicQuery
 {
     [DependsOn(typeof(DynamicQueryDomainModule))]
-    public class DynamicQueryEntityFrameworkCoreModule
+    public class DynamicQueryEntityFrameworkCoreModule : AbpModule
     {
     }
 }
