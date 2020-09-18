@@ -22,6 +22,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.Abp.DynamicQuery.Do
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.Abp.DynamicQuery.Application", "src\EasyAbp.Abp.DynamicQuery.Application\EasyAbp.Abp.DynamicQuery.Application.csproj", "{D908B38B-634C-4CD3-87A8-26062BE2C385}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.Abp.DynamicQuery.Application.Tests", "test\EasyAbp.Abp.DynamicQuery.Application.Tests\EasyAbp.Abp.DynamicQuery.Application.Tests.csproj", "{A2D899D3-6135-4FE1-A129-AADA2932B01E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -60,6 +62,10 @@ Global
 		{D908B38B-634C-4CD3-87A8-26062BE2C385}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D908B38B-634C-4CD3-87A8-26062BE2C385}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D908B38B-634C-4CD3-87A8-26062BE2C385}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2D899D3-6135-4FE1-A129-AADA2932B01E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2D899D3-6135-4FE1-A129-AADA2932B01E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2D899D3-6135-4FE1-A129-AADA2932B01E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2D899D3-6135-4FE1-A129-AADA2932B01E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -73,6 +79,7 @@ Global
 		{527F645C-C1FC-406E-8479-81386C8ECF13} = {CCD2960C-23CC-4AB4-B84D-60C7AAA52F4D}
 		{E60895E5-79C4-447D-88B7-85CB5BA336A4} = {CCD2960C-23CC-4AB4-B84D-60C7AAA52F4D}
 		{D908B38B-634C-4CD3-87A8-26062BE2C385} = {649A3FFA-182F-4E56-9717-E6A9A2BEC545}
+		{A2D899D3-6135-4FE1-A129-AADA2932B01E} = {CCD2960C-23CC-4AB4-B84D-60C7AAA52F4D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4324B3B4-B60B-4E3C-91D8-59576B4E26DD}

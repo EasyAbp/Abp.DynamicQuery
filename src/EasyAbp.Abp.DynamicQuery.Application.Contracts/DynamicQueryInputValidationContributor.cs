@@ -8,7 +8,7 @@ namespace EasyAbp.Abp.DynamicQuery
 {
     public class DynamicQueryInputValidationContributor : IObjectValidationContributor, ITransientDependency
     {
-        private readonly Regex _regFieldName = new Regex(@"^\w+$", RegexOptions.Compiled);
+        private readonly Regex _regFieldName = new Regex(@"^[a-zA-Z_][a-zA-Z0-9_]*$", RegexOptions.Compiled);
 
         public void AddErrors(ObjectValidationContext context)
         {
