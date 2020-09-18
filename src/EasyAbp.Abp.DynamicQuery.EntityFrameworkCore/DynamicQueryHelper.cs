@@ -2,47 +2,52 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Dynamic.Core;
-using System.Text;
+using EasyAbp.Abp.DynamicQuery.Extensions;
+using EasyAbp.Abp.DynamicQuery.Filters;
 using Volo.Abp.DependencyInjection;
 
 namespace EasyAbp.Abp.DynamicQuery
 {
     public class DynamicQueryHelper : IDynamicQueryHelper, ITransientDependency
     {
-        public virtual IQueryable<T> GetQueryByFilter<T>(IQueryable<T> query, IList<DynamicQueryFilter> filters) where T : class
+        public virtual IQueryable<T> GetQueryByFilter<T>(IQueryable<T> query, DynamicQueryGroup group) where T : class
         {
-            if (filters.IsNullOrEmpty())
+            if (group == null || group.Filters.IsNullOrEmpty())
             {
                 return query;
             }
-            
-            var whereClause = GenerateWhereClause<T>(filters);
-            return query.Where(whereClause, filters.Select(f => f.Value).ToArray());
+
+            int index = 0;
+            var whereClause = GenerateWhereClause(group, ref index);
+            var lstValues = new List<object>();
+            group.Travel((_, condition) => lstValues.Add(condition.Value));
+            return query.Where(whereClause, lstValues.ToArray());
         }
 
-        protected virtual string GenerateWhereClause<T>(IList<DynamicQueryFilter> filters) where T : class
+        protected virtual string GenerateWhereClause(DynamicQueryGroup group, ref int index)
         {
-            var sbWhere = new StringBuilder();
-            int index = 0;
-            foreach (var filter in filters)
-            {
-                if (index > 0)
-                {
-                    sbWhere.Append(" AND ");
-                }
+            var lstConditions = new List<string>();
 
-                sbWhere.Append(ConvertToCondition(filter, index));
-                index++;
+            foreach (var filter in group.Filters)
+            {
+                if (filter is DynamicQueryCondition condition)
+                {
+                    lstConditions.Add(ConvertToCondition(condition, index++));
+                }
+                else
+                {
+                    lstConditions.Add(GenerateWhereClause((DynamicQueryGroup)filter, ref index));
+                }
             }
 
-            return sbWhere.ToString();
+            return $"({lstConditions.JoinAsString(group is DynamicQueryGroupAnd ? " && " : " || ")})";
         }
 
-        protected virtual string ConvertToCondition(DynamicQueryFilter filter, int index)
+        protected virtual string ConvertToCondition(DynamicQueryCondition condition, int index)
         {
-            string left = GetLeft(filter, index);
-            string right = GetRight(filter, index);
-            switch (filter.Operator)
+            string left = GetLeft(condition, index);
+            string right = GetRight(condition, index);
+            switch (condition.Operator)
             {
                 case DynamicQueryOperator.Equal:
                     return $"{left} == {right}";
@@ -69,16 +74,16 @@ namespace EasyAbp.Abp.DynamicQuery
                 case DynamicQueryOperator.NotContain:
                     return $"!{left}.Contains({right})";
                 default:
-                    throw new InvalidOperationException($"Unknown dynamic query operator: {filter.Operator}");
+                    throw new InvalidOperationException($"Unknown dynamic query operator: {condition.Operator}");
             }
         }
 
-        protected virtual string GetLeft(DynamicQueryFilter filter, int index)
+        protected virtual string GetLeft(DynamicQueryCondition condition, int index)
         {
-            return filter.FieldName;
+            return condition.FieldName;
         }
 
-        protected virtual string GetRight(DynamicQueryFilter filter, int index)
+        protected virtual string GetRight(DynamicQueryCondition condition, int index)
         {
             return $"@{index}";
         }

@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using EasyAbp.Abp.DynamicQuery.Dtos;
+using EasyAbp.Abp.DynamicQuery.Filters;
 using Shouldly;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Validation;
@@ -6,7 +8,7 @@ using Xunit;
 
 namespace EasyAbp.Abp.DynamicQuery
 {
-    public class DynamicQueryInputValidationTests : DynamicQueryApplicationTestBase
+    public class DynamicQueryInputValidationTests : DynamicQueryApplicationContractsTestBase
     {
         private readonly TestAppService _service;
 
@@ -21,10 +23,13 @@ namespace EasyAbp.Abp.DynamicQuery
             // Arrange
             var input = new DynamicQueryInput
             {
-                FieldFilters = new List<Dtos.DynamicQueryFilter>
+                FilterGroup = new DynamicQueryGroupAnd
                 {
-                    new Dtos.DynamicQueryFilter {FieldName = "1234", Operator = DynamicQueryOperator.Equal, Value = "a"},
-                    new Dtos.DynamicQueryFilter {FieldName = "a b", Operator = DynamicQueryOperator.Equal, Value = "a b"},
+                    Filters = new List<DynamicQueryFilter>
+                    {
+                        new DynamicQueryCondition {FieldName = "1234", Operator = DynamicQueryOperator.Equal, Value = "a"},
+                        new DynamicQueryCondition {FieldName = "a b", Operator = DynamicQueryOperator.Equal, Value = "a b"},
+                    }
                 }
             };
 
@@ -33,9 +38,9 @@ namespace EasyAbp.Abp.DynamicQuery
 
             // Assert
             ex.ValidationErrors.Count.ShouldBe(2);
-            ex.ValidationErrors[0].MemberNames.ShouldBe(new[] {nameof(IDynamicQueryInput.FieldFilters)});
+            ex.ValidationErrors[0].MemberNames.ShouldBe(new[] {nameof(DynamicQueryCondition.FieldName)});
             ex.ValidationErrors[0].ErrorMessage.ShouldBe("InvalidFieldName: 1234");
-            ex.ValidationErrors[1].MemberNames.ShouldBe(new[] {nameof(IDynamicQueryInput.FieldFilters)});
+            ex.ValidationErrors[1].MemberNames.ShouldBe(new[] {nameof(DynamicQueryCondition.FieldName)});
             ex.ValidationErrors[1].ErrorMessage.ShouldBe("InvalidFieldName: a b");
         }
     }
@@ -49,6 +54,6 @@ namespace EasyAbp.Abp.DynamicQuery
 
     public class DynamicQueryInput : IDynamicQueryInput
     {
-        public List<Dtos.DynamicQueryFilter> FieldFilters { get; set; }
+        public DynamicQueryGroup FilterGroup { get; set; }
     }
 }

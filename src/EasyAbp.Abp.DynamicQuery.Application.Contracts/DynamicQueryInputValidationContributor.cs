@@ -1,6 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Text.RegularExpressions;
+using EasyAbp.Abp.DynamicQuery.Dtos;
+using EasyAbp.Abp.DynamicQuery.Extensions;
+using EasyAbp.Abp.DynamicQuery.Filters;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Validation;
 
@@ -12,18 +16,20 @@ namespace EasyAbp.Abp.DynamicQuery
 
         public void AddErrors(ObjectValidationContext context)
         {
-            var dynamicQueryInput = context.ValidatingObject as IDynamicQueryInput;
-            if (dynamicQueryInput == null) return;
-            
-            if (!dynamicQueryInput.FieldFilters.IsNullOrEmpty())
+            if (!(context.ValidatingObject is IDynamicQueryInput dynamicQueryInput))
             {
-                foreach (var filter in dynamicQueryInput.FieldFilters)
+                return;
+            }
+            
+            if (dynamicQueryInput.FilterGroup != null && !dynamicQueryInput.FilterGroup.Filters.IsNullOrEmpty())
+            {
+                dynamicQueryInput.FilterGroup.Travel((_, condition) =>
                 {
-                    if (!_regFieldName.IsMatch(filter.FieldName))
+                    if (!_regFieldName.IsMatch(condition.FieldName))
                     {
-                        context.Errors.Add( new ValidationResult($"InvalidFieldName: {filter.FieldName}", new[] {nameof(IDynamicQueryInput.FieldFilters)}));
+                        context.Errors.Add( new ValidationResult($"InvalidFieldName: {condition.FieldName}", new[] {nameof(DynamicQueryCondition.FieldName)}));
                     }
-                }
+                });
             }
         }
     }

@@ -1,6 +1,6 @@
-﻿namespace EasyAbp.Abp.DynamicQuery
+﻿namespace EasyAbp.Abp.DynamicQuery.Filters
 {
-    public class DynamicQueryFilter
+    public class DynamicQueryCondition : DynamicQueryFilter
     {
         public string FieldName { get; set; }
         public DynamicQueryOperator Operator { get; set; }
