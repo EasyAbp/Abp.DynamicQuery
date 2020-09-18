@@ -395,6 +395,11 @@ bootstrap-v4-rtl@4.4.1-2:
   resolved "https://registry.yarnpkg.com/bootstrap-v4-rtl/-/bootstrap-v4-rtl-4.4.1-2.tgz#93f2a5096f1a0a5462729a7b66a97a40972cc595"
   integrity sha512-x9jZLEQzeOlkfxnR73aE/LjTD6hlqU6BbKVKdGasDByEP7dHBaxYaDGX54pfpHTom2QFqQ3t6y0WkDZW6DrQhw==
 
+"bootstrap@>=3.1.0 <4":
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-3.4.1.tgz#c3a347d419e289ad11f4033e3c4132b87c081d72"
+  integrity sha512-yN5oZVmRCwe5aKwzRj6736nSmKDX7pLYwsXiCj/EYmo16hODaBiT4En5btW/jhBF/seV+XMx3aYwukYC3A49DA==
+
 bootstrap@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.5.0.tgz#97d9dbcb5a8972f8722c9962483543b907d9b9ec"
@@ -688,6 +693,11 @@ detect-libc@^1.0.2:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/detect-libc/-/detect-libc-1.0.3.tgz#fa137c4bd698edf55cd5cd02ac559f91a4c4ba9b"
   integrity sha1-+hN8S9aY7fVc1c0CrFWfkaTEups=
+
+dot@>=1.0.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/dot/-/dot-1.1.3.tgz#351360e00a748bce9a1f8f27c00c394a7e4e1e9f"
+  integrity sha512-/nt74Rm+PcfnirXGEdhZleTwGC2LMnuKTeeTIlI82xb5loBBoXNYzr2ezCroPSMtilK8EZIfcNZwOcHN+ib1Lg==
 
 duplexify@^3.6.0:
   version "3.7.1"
@@ -1333,6 +1343,24 @@ isobject@^3.0.0, isobject@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/isobject/-/isobject-3.0.1.tgz#4e431e92b11a9731636aa1f9c8d1ccbcfdab78df"
 
+jQuery-QueryBuilder@^2.5.2:
+  version "2.5.2"
+  resolved "https://registry.yarnpkg.com/jQuery-QueryBuilder/-/jQuery-QueryBuilder-2.5.2.tgz#be337dc3ec01a35380fa0f7ee9366a5fc75a0dd1"
+  integrity sha512-DkWePjNfPsposPTWvz0thDhVxuiwdpjrmKIIaoD9MgLmMKbwQmdKUH9q6xO2ZfMYEDZ8k1aZPCHIDEoC1NgIPg==
+  dependencies:
+    bootstrap ">=3.1.0 <4"
+    dot ">=1.0.3"
+    jquery "^3.3.1"
+    jquery-extendext ">=0.1.2"
+    moment "^2.21.0"
+
+jquery-extendext@>=0.1.2:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/jquery-extendext/-/jquery-extendext-1.0.0.tgz#00d6615e2ef7da630fbced293910002a1b281ee1"
+  integrity sha512-gDJjpQ8ISd4ZMwSn0yXSuyufsPMCeWtWJ8kmqE85VromJqyVT2sdkHzS5yL0w1GK81UpOzmr2f9JgFln2sbJSg==
+  dependencies:
+    jquery ">=1.9.1"
+
 jquery-form@^4.3.0:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/jquery-form/-/jquery-form-4.3.0.tgz#7d3961c314a1f2d15298f4af1d3943f54f4149c6"
@@ -1372,7 +1400,7 @@ jquery@>=1.12.0, jquery@>=1.7, jquery@>=1.7.2, jquery@>=1.8, "jquery@^1.7 || ^2.
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.4.1.tgz#714f1f8d9dde4bdfa55764ba37ef214630d80ef2"
   integrity sha512-36+AdBzCL+y6qjw5Tx7HgzeGCzC81MDDgaUP8ld2zhx58HdqXGoBd+tHdrBMiyjGQs0Hxs/MLZTu/eHNJJuWPw==
 
-jquery@~3.5.1:
+jquery@>=1.9.1, jquery@^3.3.1, jquery@~3.5.1:
   version "3.5.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.5.1.tgz#d7b4d08e1bfdb86ad2f1a3d039ea17304717abb5"
   integrity sha512-XwIBPqcMn57FxfT+Go5pzySnm4KWkT1Tv7gjrpT1srtf8Weynl6R273VJ5GjkRb51IzMp5nbaPjJXMWeju2MKg==
@@ -1575,6 +1603,11 @@ mkdirp@^0.5.0, mkdirp@^0.5.1:
   integrity sha1-MAV0OOrGz3+MR2fzhkjWaX11yQM=
   dependencies:
     minimist "0.0.8"
+
+moment@^2.21.0:
+  version "2.28.0"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.28.0.tgz#cdfe73ce01327cee6537b0fafac2e0f21a237d75"
+  integrity sha512-Z5KOjYmnHyd/ukynmFd/WwyXHd7L4J9vTI/nn5Ap9AVUgaAE15VvQ9MOGmJJygEUklupqIrFnor/tjTwRU+tQw==
 
 ms@2.0.0:
   version "2.0.0"

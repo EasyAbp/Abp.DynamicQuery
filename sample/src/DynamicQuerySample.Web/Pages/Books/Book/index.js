@@ -6,6 +6,27 @@ $(function () {
     var createModal = new abp.ModalManager(abp.appPath + 'Books/Book/CreateModal');
     var editModal = new abp.ModalManager(abp.appPath + 'Books/Book/EditModal');
 
+    $('#QueryBuilder').queryBuilder({
+        filters: [
+            {
+                id: "name",
+                type: "string"
+            },
+            {
+                id: "type",
+                type: "integer"
+            },
+            {
+                id: "publishDate",
+                type: "date"
+            },
+            {
+                id: "price",
+                type: "double"
+            },
+            ]
+    });
+
     var dataTable = $('#BookTable').DataTable(abp.libs.datatables.normalizeConfiguration({
         processing: true,
         serverSide: true,
@@ -24,7 +45,7 @@ $(function () {
                                 text: l('Edit'),
                                 visible: abp.auth.isGranted('DynamicQuerySample.Book.Update'),
                                 action: function (data) {
-                                    editModal.open({ id: data.record.id });
+                                    editModal.open({id: data.record.id});
                                 }
                             },
                             {
@@ -34,7 +55,7 @@ $(function () {
                                     return l('BookDeletionConfirmationMessage', data.record.id);
                                 },
                                 action: function (data) {
-                                        service.delete(data.record.id)
+                                    service.delete(data.record.id)
                                         .then(function () {
                                             abp.notify.info(l('SuccessfullyDeleted'));
                                             dataTable.ajax.reload();
@@ -44,10 +65,10 @@ $(function () {
                         ]
                 }
             },
-            { data: "name" },
-            { data: "type" },
-            { data: "publishDate" },
-            { data: "price" },
+            {data: "name"},
+            {data: "type"},
+            {data: "publishDate"},
+            {data: "price"},
         ]
     }));
 

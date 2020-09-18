@@ -19,10 +19,12 @@
 @section scripts
 {
     <abp-script src="/Pages/Books/Book/index.js" />
+    <abp-script src="/libs/jQuery-QueryBuilder/js/query-builder.standalone.min.js" />
 }
 @section styles
 {
     <abp-style src="/Pages/Books/Book/index.css"/>
+    <abp-style src="/libs/jQuery-QueryBuilder/css/query-builder.default.css" />
 }
 
 <abp-card>
@@ -40,7 +42,7 @@
         </abp-row>
     </abp-card-header>
     <abp-card-body>
-        <abp-
+        <div id="QueryBuilder"></div>
         <abp-table striped-rows="true" id="BookTable" class="nowrap">
             <thead>
             <tr>
