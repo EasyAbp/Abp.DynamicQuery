@@ -1,10 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using DynamicQuerySample.Users;
 using Volo.Abp.Data;
 using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore.Modeling;
 using Volo.Abp.Identity;
 using Volo.Abp.Users.EntityFrameworkCore;
+using DynamicQuerySample.Books;
 
 namespace DynamicQuerySample.EntityFrameworkCore
 {
@@ -25,6 +26,7 @@ namespace DynamicQuerySample.EntityFrameworkCore
         /* Add DbSet properties for your Aggregate Roots / Entities here.
          * Also map them inside DynamicQuerySampleDbContextModelCreatingExtensions.ConfigureDynamicQuerySample
          */
+        public DbSet<Book> Books { get; set; }
 
         public DynamicQuerySampleDbContext(DbContextOptions<DynamicQuerySampleDbContext> options)
             : base(options)

@@ -1,4 +1,4 @@
-﻿namespace DynamicQuerySample.Web.Menus
+namespace DynamicQuerySample.Web.Menus
 {
     public class DynamicQuerySampleMenus
     {
@@ -7,5 +7,6 @@
 
         //Add your menu items here...
 
+        public const string Book = Prefix + ".Book";
     }
 }

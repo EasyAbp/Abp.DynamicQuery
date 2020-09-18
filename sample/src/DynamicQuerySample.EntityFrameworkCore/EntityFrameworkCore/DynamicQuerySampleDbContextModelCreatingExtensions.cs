@@ -1,5 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+using DynamicQuerySample.Books;
+using Microsoft.EntityFrameworkCore;
 using Volo.Abp;
+using Volo.Abp.EntityFrameworkCore.Modeling;
 
 namespace DynamicQuerySample.EntityFrameworkCore
 {
@@ -17,6 +19,16 @@ namespace DynamicQuerySample.EntityFrameworkCore
             //    b.ConfigureByConvention(); //auto configure for the base class props
             //    //...
             //});
+
+
+            builder.Entity<Book>(b =>
+            {
+                b.ToTable(DynamicQuerySampleConsts.DbTablePrefix + "Books", DynamicQuerySampleConsts.DbSchema);
+                b.ConfigureByConvention(); 
+                
+
+                /* Configure more properties here */
+            });
         }
     }
 }

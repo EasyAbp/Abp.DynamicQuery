@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using DynamicQuerySample.Permissions;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Localization;
 using DynamicQuerySample.Localization;
@@ -29,6 +30,9 @@ namespace DynamicQuerySample.Web.Menus
             var l = context.GetLocalizer<DynamicQuerySampleResource>();
 
             context.Menu.Items.Insert(0, new ApplicationMenuItem(DynamicQuerySampleMenus.Home, l["Menu:Home"], "~/"));
+            context.Menu.AddItem(
+                new ApplicationMenuItem(DynamicQuerySampleMenus.Book, l["Menu:Book"], "/Books/Book")
+            );
         }
     }
 }
