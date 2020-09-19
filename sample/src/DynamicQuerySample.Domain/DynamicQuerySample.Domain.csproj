@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\src\EasyAbp.Abp.DynamicQuery.Domain\EasyAbp.Abp.DynamicQuery.Domain.csproj" />
     <ProjectReference Include="..\DynamicQuerySample.Domain.Shared\DynamicQuerySample.Domain.Shared.csproj" />
   </ItemGroup>
 

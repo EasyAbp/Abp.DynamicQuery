@@ -9,7 +9,7 @@ namespace DynamicQuerySample.Books
         ICrudAppService< 
             BookDto, 
             Guid, 
-            PagedAndSortedResultRequestDto,
+            GetListInput,
             CreateUpdateBookDto,
             CreateUpdateBookDto>
     {

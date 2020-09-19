@@ -35,7 +35,19 @@ $(function () {
         autoWidth: false,
         scrollCollapse: true,
         order: [[0, "asc"]],
-        ajax: abp.libs.datatables.createAjax(service.getList),
+        ajax: abp.libs.datatables.createAjax(service.getList, function(){ 
+            return {
+                filterGroup: {
+                    Filters: [
+                        {
+                            fieldName: "Name",
+                            operator: 0,
+                            value: "Book1"
+                        }
+                    ]
+                }
+            }
+        }),
         columnDefs: [
             {
                 rowAction: {

@@ -1,4 +1,5 @@
 ﻿using DynamicQuerySample.Localization;
+using EasyAbp.Abp.DynamicQuery;
 using Volo.Abp.AuditLogging;
 using Volo.Abp.BackgroundJobs;
 using Volo.Abp.FeatureManagement;
@@ -25,6 +26,7 @@ namespace DynamicQuerySample
         typeof(AbpSettingManagementDomainSharedModule),
         typeof(AbpTenantManagementDomainSharedModule)
         )]
+    [DependsOn(typeof(DynamicQueryDomainSharedModule))]
     public class DynamicQuerySampleDomainSharedModule : AbpModule
     {
         public override void PreConfigureServices(ServiceConfigurationContext context)

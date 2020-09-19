@@ -1,4 +1,5 @@
-using DynamicQuerySample.Books;
+﻿using DynamicQuerySample.Books;
+using EasyAbp.Abp.DynamicQuery;
 using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
@@ -26,6 +27,7 @@ namespace DynamicQuerySample.EntityFrameworkCore
         typeof(AbpTenantManagementEntityFrameworkCoreModule),
         typeof(AbpFeatureManagementEntityFrameworkCoreModule)
         )]
+    [DependsOn(typeof(DynamicQueryEntityFrameworkCoreModule))]
     public class DynamicQuerySampleEntityFrameworkCoreModule : AbpModule
     {
         public override void PreConfigureServices(ServiceConfigurationContext context)

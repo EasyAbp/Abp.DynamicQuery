@@ -30,7 +30,7 @@ namespace EasyAbp.Abp.DynamicQuery
             // Arrange
 
             // Act
-            var output = _dynamicQueryHelper.GetQueryByFilter(_books, new DynamicQueryGroupAnd
+            var output = _dynamicQueryHelper.ExecuteDynamicQuery(_books, new DynamicQueryGroupAnd
             {
                 Filters = new List<DynamicQueryFilter>
                 {
@@ -49,7 +49,7 @@ namespace EasyAbp.Abp.DynamicQuery
             // Arrange
 
             // Act
-            var output = _dynamicQueryHelper.GetQueryByFilter(_books, new DynamicQueryGroupOr
+            var output = _dynamicQueryHelper.ExecuteDynamicQuery(_books, new DynamicQueryGroupOr
             {
                 Filters = new List<DynamicQueryFilter>
                 {
@@ -68,7 +68,7 @@ namespace EasyAbp.Abp.DynamicQuery
             // Arrange
 
             // Act
-            var output = _dynamicQueryHelper.GetQueryByFilter(_books, new DynamicQueryGroupOr
+            var output = _dynamicQueryHelper.ExecuteDynamicQuery(_books, new DynamicQueryGroupOr
             {
                 Filters = new List<DynamicQueryFilter>
                 {

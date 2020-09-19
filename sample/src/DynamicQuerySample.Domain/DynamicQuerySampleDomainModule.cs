@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using DynamicQuerySample.MultiTenancy;
+using EasyAbp.Abp.DynamicQuery;
 using Volo.Abp.AuditLogging;
 using Volo.Abp.BackgroundJobs;
 using Volo.Abp.Emailing;
@@ -29,6 +30,7 @@ namespace DynamicQuerySample
         typeof(AbpTenantManagementDomainModule),
         typeof(AbpEmailingModule)
     )]
+    [DependsOn(typeof(DynamicQueryDomainModule))]
     public class DynamicQuerySampleDomainModule : AbpModule
     {
         public override void ConfigureServices(ServiceConfigurationContext context)

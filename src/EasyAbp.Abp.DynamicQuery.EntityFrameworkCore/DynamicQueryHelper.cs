@@ -10,7 +10,7 @@ namespace EasyAbp.Abp.DynamicQuery
 {
     public class DynamicQueryHelper : IDynamicQueryHelper, ITransientDependency
     {
-        public virtual IQueryable<T> GetQueryByFilter<T>(IQueryable<T> query, DynamicQueryGroup group) where T : class
+        public virtual IQueryable<T> ExecuteDynamicQuery<T>(IQueryable<T> query, DynamicQueryGroup group) where T : class
         {
             if (group == null || group.Filters.IsNullOrEmpty())
             {
