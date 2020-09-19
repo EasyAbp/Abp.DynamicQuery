@@ -8,7 +8,7 @@ using Xunit;
 
 namespace EasyAbp.Abp.DynamicQuery
 {
-    public class DynamicQueryInputValidationTests : DynamicQueryApplicationContractsTestBase
+    public class DynamicQueryInputValidationTests : DynamicQueryApplicationTestBase
     {
         private readonly TestAppService _service;
 
@@ -21,10 +21,11 @@ namespace EasyAbp.Abp.DynamicQuery
         public void DynamicQueryFilterShouldBeValidated()
         {
             // Arrange
-            var input = new DynamicQueryInput
+            var input = new GetListInput
             {
-                FilterGroup = new DynamicQueryGroupAnd
+                FilterGroup = new DynamicQueryGroup
                 {
+                    Type = GroupType.Add,
                     Filters = new List<DynamicQueryFilter>
                     {
                         new DynamicQueryCondition {FieldName = "1234", Operator = DynamicQueryOperator.Equal, Value = "a"},
@@ -45,14 +46,14 @@ namespace EasyAbp.Abp.DynamicQuery
         }
     }
 
-    public class TestAppService : ApplicationService
+    public class TestAppService : DynamicQueryAppService
     {
-        public virtual void TestDynamicQueryInputValidationMethod(DynamicQueryInput input)
+        public virtual void TestDynamicQueryInputValidationMethod(GetListInput input)
         {
         }
     }
 
-    public class DynamicQueryInput : IDynamicQueryInput
+    public class GetListInput : IDynamicQueryInput
     {
         public DynamicQueryGroup FilterGroup { get; set; }
     }

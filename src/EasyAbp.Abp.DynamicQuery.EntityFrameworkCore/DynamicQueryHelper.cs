@@ -40,7 +40,7 @@ namespace EasyAbp.Abp.DynamicQuery
                 }
             }
 
-            return $"({lstConditions.JoinAsString(group is DynamicQueryGroupAnd ? " && " : " || ")})";
+            return $"({lstConditions.JoinAsString(group.Type == GroupType.Add ? " && " : " || ")})";
         }
 
         protected virtual string ConvertToCondition(DynamicQueryCondition condition, int index)

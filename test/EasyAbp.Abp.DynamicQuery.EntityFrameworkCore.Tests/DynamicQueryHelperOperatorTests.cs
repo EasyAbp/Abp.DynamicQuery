@@ -30,8 +30,8 @@ namespace EasyAbp.Abp.DynamicQuery
 
             // Act
             var output1 = _dynamicQueryHelper.ExecuteDynamicQuery(_books, null);
-            var output2 = _dynamicQueryHelper.ExecuteDynamicQuery(_books, new DynamicQueryGroupAnd());
-            var output3 = _dynamicQueryHelper.ExecuteDynamicQuery(_books, new DynamicQueryGroupAnd {Filters = new List<DynamicQueryFilter>()});
+            var output2 = _dynamicQueryHelper.ExecuteDynamicQuery(_books, new DynamicQueryGroup());
+            var output3 = _dynamicQueryHelper.ExecuteDynamicQuery(_books, new DynamicQueryGroup { Type = GroupType.Add, Filters = new List<DynamicQueryFilter>()});
 
             // Assert
             output1.ShouldBe(_books);
@@ -45,8 +45,9 @@ namespace EasyAbp.Abp.DynamicQuery
             // Arrange
 
             // Act
-            var output = _dynamicQueryHelper.ExecuteDynamicQuery(_books, new DynamicQueryGroupAnd
+            var output = _dynamicQueryHelper.ExecuteDynamicQuery(_books, new DynamicQueryGroup()
             {
+                Type = GroupType.Add,
                 Filters = new List<DynamicQueryFilter>
                 {
                     new DynamicQueryCondition {FieldName = "Type", Operator = DynamicQueryOperator.Equal, Value = BookType.Adventure}
@@ -64,8 +65,9 @@ namespace EasyAbp.Abp.DynamicQuery
             // Arrange
 
             // Act
-            var output = _dynamicQueryHelper.ExecuteDynamicQuery(_books, new DynamicQueryGroupAnd
+            var output = _dynamicQueryHelper.ExecuteDynamicQuery(_books, new DynamicQueryGroup()
                 {
+                    Type = GroupType.Add,
                     Filters = new List<DynamicQueryFilter>
                     {
                         new DynamicQueryCondition {FieldName = "Type", Operator = DynamicQueryOperator.NotEqual, Value = BookType.Adventure}
@@ -83,8 +85,9 @@ namespace EasyAbp.Abp.DynamicQuery
             // Arrange
 
             // Act
-            var output = _dynamicQueryHelper.ExecuteDynamicQuery(_books, new DynamicQueryGroupAnd
+            var output = _dynamicQueryHelper.ExecuteDynamicQuery(_books, new DynamicQueryGroup()
                 {
+                    Type = GroupType.Add,
                     Filters = new List<DynamicQueryFilter>
                     {
                         new DynamicQueryCondition {FieldName = "Price", Operator = DynamicQueryOperator.Greater, Value = 100}
@@ -102,8 +105,9 @@ namespace EasyAbp.Abp.DynamicQuery
             // Arrange
 
             // Act
-            var output = _dynamicQueryHelper.ExecuteDynamicQuery(_books, new DynamicQueryGroupAnd
+            var output = _dynamicQueryHelper.ExecuteDynamicQuery(_books, new DynamicQueryGroup()
                 {
+                    Type = GroupType.Add,
                     Filters = new List<DynamicQueryFilter>
                     {
                         new DynamicQueryCondition {FieldName = "Price", Operator = DynamicQueryOperator.GreaterOrEqual, Value = 200}
@@ -121,8 +125,9 @@ namespace EasyAbp.Abp.DynamicQuery
             // Arrange
 
             // Act
-            var output = _dynamicQueryHelper.ExecuteDynamicQuery(_books, new DynamicQueryGroupAnd
+            var output = _dynamicQueryHelper.ExecuteDynamicQuery(_books, new DynamicQueryGroup()
                 {
+                    Type = GroupType.Add,
                     Filters = new List<DynamicQueryFilter>
                     {
                         new DynamicQueryCondition {FieldName = "Price", Operator = DynamicQueryOperator.Less, Value = 300}
@@ -140,8 +145,9 @@ namespace EasyAbp.Abp.DynamicQuery
             // Arrange
 
             // Act
-            var output = _dynamicQueryHelper.ExecuteDynamicQuery(_books, new DynamicQueryGroupAnd
+            var output = _dynamicQueryHelper.ExecuteDynamicQuery(_books, new DynamicQueryGroup()
                 {
+                    Type = GroupType.Add,
                     Filters = new List<DynamicQueryFilter>
                     {
                         new DynamicQueryCondition {FieldName = "Price", Operator = DynamicQueryOperator.LessOrEqual, Value = 200}
@@ -159,8 +165,9 @@ namespace EasyAbp.Abp.DynamicQuery
             // Arrange
 
             // Act
-            var output = _dynamicQueryHelper.ExecuteDynamicQuery(_books, new DynamicQueryGroupAnd
+            var output = _dynamicQueryHelper.ExecuteDynamicQuery(_books, new DynamicQueryGroup()
                 {
+                    Type = GroupType.Add,
                     Filters = new List<DynamicQueryFilter>
                     {
                         new DynamicQueryCondition {FieldName = "Name", Operator = DynamicQueryOperator.StartWith, Value = "Book"}
@@ -178,8 +185,9 @@ namespace EasyAbp.Abp.DynamicQuery
             // Arrange
 
             // Act
-            var output = _dynamicQueryHelper.ExecuteDynamicQuery(_books, new DynamicQueryGroupAnd
+            var output = _dynamicQueryHelper.ExecuteDynamicQuery(_books, new DynamicQueryGroup()
                 {
+                    Type = GroupType.Add,
                     Filters = new List<DynamicQueryFilter>
                     {
                         new DynamicQueryCondition {FieldName = "Name", Operator = DynamicQueryOperator.NotStartWith, Value = "Book1"}
@@ -197,8 +205,9 @@ namespace EasyAbp.Abp.DynamicQuery
             // Arrange
 
             // Act
-            var output = _dynamicQueryHelper.ExecuteDynamicQuery(_books, new DynamicQueryGroupAnd
+            var output = _dynamicQueryHelper.ExecuteDynamicQuery(_books, new DynamicQueryGroup()
                 {
+                    Type = GroupType.Add,
                     Filters = new List<DynamicQueryFilter>
                     {
                         new DynamicQueryCondition {FieldName = "Name", Operator = DynamicQueryOperator.EndWith, Value = "ok3"}
@@ -216,8 +225,9 @@ namespace EasyAbp.Abp.DynamicQuery
             // Arrange
 
             // Act
-            var output = _dynamicQueryHelper.ExecuteDynamicQuery(_books, new DynamicQueryGroupAnd
+            var output = _dynamicQueryHelper.ExecuteDynamicQuery(_books, new DynamicQueryGroup()
                 {
+                    Type = GroupType.Add,
                     Filters = new List<DynamicQueryFilter>
                     {
                         new DynamicQueryCondition {FieldName = "Name", Operator = DynamicQueryOperator.NotEndWith, Value = "ok3"}
@@ -235,8 +245,9 @@ namespace EasyAbp.Abp.DynamicQuery
             // Arrange
 
             // Act
-            var output = _dynamicQueryHelper.ExecuteDynamicQuery(_books, new DynamicQueryGroupAnd
+            var output = _dynamicQueryHelper.ExecuteDynamicQuery(_books, new DynamicQueryGroup()
                 {
+                    Type = GroupType.Add,
                     Filters = new List<DynamicQueryFilter>
                     {
                         new DynamicQueryCondition {FieldName = "Name", Operator = DynamicQueryOperator.Contain, Value = "ok"}
@@ -254,8 +265,9 @@ namespace EasyAbp.Abp.DynamicQuery
             // Arrange
 
             // Act
-            var output = _dynamicQueryHelper.ExecuteDynamicQuery(_books, new DynamicQueryGroupAnd
+            var output = _dynamicQueryHelper.ExecuteDynamicQuery(_books, new DynamicQueryGroup()
                 {
+                    Type = GroupType.Add,
                     Filters = new List<DynamicQueryFilter>
                     {
                         new DynamicQueryCondition {FieldName = "Name", Operator = DynamicQueryOperator.NotContain, Value = "ok"}

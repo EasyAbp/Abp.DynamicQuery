@@ -30,8 +30,9 @@ namespace EasyAbp.Abp.DynamicQuery
             // Arrange
 
             // Act
-            var output = _dynamicQueryHelper.ExecuteDynamicQuery(_books, new DynamicQueryGroupAnd
+            var output = _dynamicQueryHelper.ExecuteDynamicQuery(_books, new DynamicQueryGroup()
             {
+                Type = GroupType.Add,
                 Filters = new List<DynamicQueryFilter>
                 {
                     new DynamicQueryCondition {FieldName = "Type", Operator = DynamicQueryOperator.Equal, Value = BookType.Adventure},
@@ -49,8 +50,9 @@ namespace EasyAbp.Abp.DynamicQuery
             // Arrange
 
             // Act
-            var output = _dynamicQueryHelper.ExecuteDynamicQuery(_books, new DynamicQueryGroupOr
+            var output = _dynamicQueryHelper.ExecuteDynamicQuery(_books, new DynamicQueryGroup()
             {
+                Type = GroupType.Or,
                 Filters = new List<DynamicQueryFilter>
                 {
                     new DynamicQueryCondition {FieldName = "Type", Operator = DynamicQueryOperator.Equal, Value = BookType.Adventure},
@@ -68,13 +70,15 @@ namespace EasyAbp.Abp.DynamicQuery
             // Arrange
 
             // Act
-            var output = _dynamicQueryHelper.ExecuteDynamicQuery(_books, new DynamicQueryGroupOr
+            var output = _dynamicQueryHelper.ExecuteDynamicQuery(_books, new DynamicQueryGroup
             {
+                Type = GroupType.Or,
                 Filters = new List<DynamicQueryFilter>
                 {
                     new DynamicQueryCondition {FieldName = "Type", Operator = DynamicQueryOperator.Equal, Value = BookType.Biography},
-                    new DynamicQueryGroupAnd
+                    new DynamicQueryGroup
                     {
+                        Type = GroupType.Add,
                         Filters = new List<DynamicQueryFilter>
                         {
                             new DynamicQueryCondition {FieldName = "Type", Operator = DynamicQueryOperator.Equal, Value = BookType.Adventure},
