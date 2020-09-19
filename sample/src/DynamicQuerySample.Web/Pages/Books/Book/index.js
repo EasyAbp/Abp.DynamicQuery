@@ -37,15 +37,17 @@ $(function () {
         order: [[0, "asc"]],
         ajax: abp.libs.datatables.createAjax(service.getList, function(){ 
             return {
-                filterGroup: {
-                    Filters: [
-                        {
-                            fieldName: "Name",
-                            operator: 0,
-                            value: "Book1"
-                        }
-                    ]
-                }
+                filterGroup:
+                    {
+                        type: 0,
+                        conditions: [
+                            {
+                                fieldName: "Name",
+                                operator: 0,
+                                value: "Book1"
+                            }
+                        ]
+                    }
             }
         }),
         columnDefs: [

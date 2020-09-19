@@ -1,6 +1,10 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using DynamicQuerySample.Books.Dtos;
+using Microsoft.AspNetCore.Mvc;
+using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 
 namespace DynamicQuerySample.Books
@@ -18,6 +22,12 @@ namespace DynamicQuerySample.Books
         protected override IQueryable<Book> CreateFilteredQuery(GetListInput input)
         {
             return _repository.ExecuteDynamicQuery(input.FilterGroup);
+        }
+
+        [HttpPost]
+        public override Task<PagedResultDto<BookDto>> GetListAsync(GetListInput input)
+        {
+            return base.GetListAsync(input);
         }
     }
 }

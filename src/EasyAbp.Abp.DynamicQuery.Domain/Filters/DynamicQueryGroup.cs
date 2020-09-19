@@ -2,9 +2,10 @@
 
 namespace EasyAbp.Abp.DynamicQuery.Filters
 {
-    public class DynamicQueryGroup : DynamicQueryFilter
+    public class DynamicQueryGroup
     {
         public GroupType Type { get; set; }
-        public List<DynamicQueryFilter> Filters { get; set; }
+        public List<DynamicQueryGroup> Groups { get; set; }
+        public List<DynamicQueryCondition> Conditions { get; set; }
     }
 }

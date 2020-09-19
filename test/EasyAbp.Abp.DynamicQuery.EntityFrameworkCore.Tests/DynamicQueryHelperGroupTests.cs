@@ -33,13 +33,13 @@ namespace EasyAbp.Abp.DynamicQuery
             var output = _dynamicQueryHelper.ExecuteDynamicQuery(_books, new DynamicQueryGroup()
             {
                 Type = GroupType.Add,
-                Filters = new List<DynamicQueryFilter>
+                Conditions = new List<DynamicQueryCondition>
                 {
                     new DynamicQueryCondition {FieldName = "Type", Operator = DynamicQueryOperator.Equal, Value = BookType.Adventure},
                     new DynamicQueryCondition {FieldName = "Price", Operator = DynamicQueryOperator.Equal, Value = 400f}
                 }
             });
-            
+
             // Assert
             output.ShouldBe(_books.Skip(3));
         }
@@ -53,15 +53,15 @@ namespace EasyAbp.Abp.DynamicQuery
             var output = _dynamicQueryHelper.ExecuteDynamicQuery(_books, new DynamicQueryGroup()
             {
                 Type = GroupType.Or,
-                Filters = new List<DynamicQueryFilter>
+                Conditions = new List<DynamicQueryCondition>
                 {
                     new DynamicQueryCondition {FieldName = "Type", Operator = DynamicQueryOperator.Equal, Value = BookType.Adventure},
                     new DynamicQueryCondition {FieldName = "Price", Operator = DynamicQueryOperator.Equal, Value = 400f}
                 }
             });
-            
+
             // Assert
-            output.ShouldBe(new []{_books.ElementAt(0), _books.ElementAt(3)});
+            output.ShouldBe(new[] {_books.ElementAt(0), _books.ElementAt(3)});
         }
 
         [Fact]
@@ -73,13 +73,16 @@ namespace EasyAbp.Abp.DynamicQuery
             var output = _dynamicQueryHelper.ExecuteDynamicQuery(_books, new DynamicQueryGroup
             {
                 Type = GroupType.Or,
-                Filters = new List<DynamicQueryFilter>
+                Conditions = new List<DynamicQueryCondition>
                 {
                     new DynamicQueryCondition {FieldName = "Type", Operator = DynamicQueryOperator.Equal, Value = BookType.Biography},
+                },
+                Groups = new List<DynamicQueryGroup>
+                {
                     new DynamicQueryGroup
                     {
                         Type = GroupType.Add,
-                        Filters = new List<DynamicQueryFilter>
+                        Conditions = new List<DynamicQueryCondition>
                         {
                             new DynamicQueryCondition {FieldName = "Type", Operator = DynamicQueryOperator.Equal, Value = BookType.Adventure},
                             new DynamicQueryCondition {FieldName = "Price", Operator = DynamicQueryOperator.Equal, Value = 400f},
@@ -87,9 +90,9 @@ namespace EasyAbp.Abp.DynamicQuery
                     }
                 }
             });
-            
+
             // Assert
-            output.ShouldBe(new []{_books.ElementAt(1), _books.ElementAt(3)});
+            output.ShouldBe(new[] {_books.ElementAt(1), _books.ElementAt(3)});
         }
     }
 }

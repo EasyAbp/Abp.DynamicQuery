@@ -12,7 +12,7 @@ namespace EasyAbp.Abp.DynamicQuery
     {
         public virtual IQueryable<T> ExecuteDynamicQuery<T>(IQueryable<T> query, DynamicQueryGroup group) where T : class
         {
-            if (group == null || group.Filters.IsNullOrEmpty())
+            if (group == null || (group.Conditions.IsNullOrEmpty() && group.Groups.IsNullOrEmpty()))
             {
                 return query;
             }
@@ -28,15 +28,19 @@ namespace EasyAbp.Abp.DynamicQuery
         {
             var lstConditions = new List<string>();
 
-            foreach (var filter in group.Filters)
+            if (!group.Conditions.IsNullOrEmpty())
             {
-                if (filter is DynamicQueryCondition condition)
+                foreach (var condition in group.Conditions)
                 {
                     lstConditions.Add(ConvertToCondition(condition, index++));
                 }
-                else
+            }
+
+            if (!group.Groups.IsNullOrEmpty())
+            {
+                foreach (var subGroup in group.Groups)
                 {
-                    lstConditions.Add(GenerateWhereClause((DynamicQueryGroup)filter, ref index));
+                    lstConditions.Add(GenerateWhereClause(subGroup, ref index));
                 }
             }
 

@@ -26,7 +26,7 @@ namespace EasyAbp.Abp.DynamicQuery
                 FilterGroup = new DynamicQueryGroup
                 {
                     Type = GroupType.Add,
-                    Filters = new List<DynamicQueryFilter>
+                    Conditions = new List<DynamicQueryCondition>
                     {
                         new DynamicQueryCondition {FieldName = "1234", Operator = DynamicQueryOperator.Equal, Value = "a"},
                         new DynamicQueryCondition {FieldName = "a b", Operator = DynamicQueryOperator.Equal, Value = "a b"},

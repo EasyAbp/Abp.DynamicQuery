@@ -20,7 +20,7 @@ namespace EasyAbp.Abp.DynamicQuery
                 return;
             }
             
-            if (dynamicQueryInput.FilterGroup != null && !dynamicQueryInput.FilterGroup.Filters.IsNullOrEmpty())
+            if (dynamicQueryInput.FilterGroup != null)
             {
                 dynamicQueryInput.FilterGroup.Travel((_, condition) =>
                 {

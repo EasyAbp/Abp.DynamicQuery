@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using EasyAbp.Abp.DynamicQuery.Filters;
 
 namespace EasyAbp.Abp.DynamicQuery.Extensions
@@ -9,15 +10,18 @@ namespace EasyAbp.Abp.DynamicQuery.Extensions
             Action<DynamicQueryGroup, DynamicQueryCondition> conditionAction
         )
         {
-            foreach (var filter in group.Filters)
+            if (!group.Conditions.IsNullOrEmpty())
             {
-                if (filter is DynamicQueryCondition condition)
+                foreach (var condition in group.Conditions)
                 {
                     conditionAction(group, condition);
                 }
-                else
+            }
+
+            if (!group.Groups.IsNullOrEmpty())
+            {
+                foreach (var subGroup in group.Groups)
                 {
-                    var subGroup = (DynamicQueryGroup) filter;
                     Travel(subGroup, conditionAction);
                 }
             }
