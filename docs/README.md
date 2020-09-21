@@ -3,4 +3,4 @@
 An ABP module helps you quickly implement dynamic queries
 
 ## DEMO
-![](images/demo.gif)
+![](/docs/images/demo.gif)
