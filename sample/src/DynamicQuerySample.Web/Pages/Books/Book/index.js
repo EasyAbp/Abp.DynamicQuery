@@ -5,6 +5,8 @@ $(function () {
     var service = dynamicQuerySample.books.book;
     var createModal = new abp.ModalManager(abp.appPath + 'Books/Book/CreateModal');
     var editModal = new abp.ModalManager(abp.appPath + 'Books/Book/EditModal');
+    
+    var operators = ['equal', 'not_equal', 'greater', 'greater_or_equal', 'less', 'less_or_equal', 'begins_with', 'not_begins_with', 'ends_with', 'not_ends_with', 'contains', 'not_contains'];
 
     $('#QueryBuilder').queryBuilder({
         filters: [
@@ -24,8 +26,45 @@ $(function () {
                 id: "price",
                 type: "double"
             },
-            ]
+        ],
+        operators: operators
     });
+
+    var convertOperator = function (qb_operator) {
+        return operators.indexOf(qb_operator);
+    };
+
+    var convertCondition = function (qb_condition) {
+        var filterGroup = {
+            conditions: [],
+            groups: []
+        };
+        if (qb_condition) {
+            filterGroup.type = qb_condition.condition === "AND" ? 0 : 1;
+
+            qb_condition.rules.forEach(function (r) {
+                if (r.id) {
+                    filterGroup.conditions.push({
+                        fieldName: r.id,
+                        operator: convertOperator(r.operator),
+                        value: r.value
+                    })
+                } else {
+                    filterGroup.groups.push(convertCondition(r))
+                }
+            });
+        }
+
+        return filterGroup;
+    };
+
+    var convertToDynamicQueryParameters = function ($queryBuilder) {
+        var rule = $queryBuilder.queryBuilder('getRules');
+
+        return {
+            filterGroup: convertCondition(rule)
+        };
+    }
 
     var dataTable = $('#BookTable').DataTable(abp.libs.datatables.normalizeConfiguration({
         processing: true,
@@ -35,20 +74,8 @@ $(function () {
         autoWidth: false,
         scrollCollapse: true,
         order: [[0, "asc"]],
-        ajax: abp.libs.datatables.createAjax(service.getList, function(){ 
-            return {
-                filterGroup:
-                    {
-                        type: 0,
-                        conditions: [
-                            {
-                                fieldName: "Name",
-                                operator: 0,
-                                value: "Book1"
-                            }
-                        ]
-                    }
-            }
+        ajax: abp.libs.datatables.createAjax(service.getList, function () {
+            return convertToDynamicQueryParameters($("#QueryBuilder"))
         }),
         columnDefs: [
             {
@@ -87,6 +114,11 @@ $(function () {
     }));
 
     createModal.onResult(function () {
+        dataTable.ajax.reload();
+    });
+
+    $("#Search").click(function (e) {
+        e.preventDefault();
         dataTable.ajax.reload();
     });
 

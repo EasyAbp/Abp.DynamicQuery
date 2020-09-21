@@ -24,7 +24,7 @@ namespace DynamicQuerySample.Books
             return _repository.ExecuteDynamicQuery(input.FilterGroup);
         }
 
-        [HttpPost]
+        [HttpPost]    // Need this for receiving dynamic query parameters 
         public override Task<PagedResultDto<BookDto>> GetListAsync(GetListInput input)
         {
             return base.GetListAsync(input);
