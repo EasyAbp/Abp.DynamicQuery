@@ -1,2 +1,1 @@
-# DynamicQuery
-An ABP module helps you quickly implement dynamic queries
+./doc/README.md
