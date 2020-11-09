@@ -44,7 +44,7 @@ namespace EasyAbp.Abp.DynamicQuery
                 }
             }
 
-            return $"({lstConditions.JoinAsString(group.Type == GroupType.Add ? " && " : " || ")})";
+            return $"({lstConditions.JoinAsString(group.Type == GroupType.And ? " && " : " || ")})";
         }
 
         protected virtual string ConvertToCondition(DynamicQueryCondition condition, int index)

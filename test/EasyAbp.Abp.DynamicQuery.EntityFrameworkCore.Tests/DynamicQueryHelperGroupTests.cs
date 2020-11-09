@@ -32,7 +32,7 @@ namespace EasyAbp.Abp.DynamicQuery
             // Act
             var output = _dynamicQueryHelper.ExecuteDynamicQuery(_books, new DynamicQueryGroup()
             {
-                Type = GroupType.Add,
+                Type = GroupType.And,
                 Conditions = new List<DynamicQueryCondition>
                 {
                     new DynamicQueryCondition {FieldName = "Type", Operator = DynamicQueryOperator.Equal, Value = BookType.Adventure},
@@ -81,7 +81,7 @@ namespace EasyAbp.Abp.DynamicQuery
                 {
                     new DynamicQueryGroup
                     {
-                        Type = GroupType.Add,
+                        Type = GroupType.And,
                         Conditions = new List<DynamicQueryCondition>
                         {
                             new DynamicQueryCondition {FieldName = "Type", Operator = DynamicQueryOperator.Equal, Value = BookType.Adventure},
