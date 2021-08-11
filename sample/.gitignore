@@ -258,3 +258,5 @@ src/DynamicQuerySample.IdentityServer/Logs/*
 src/DynamicQuerySample.HttpApi.Host/Logs/*
 src/DynamicQuerySample.HttpApi.HostWithIds/Logs/*
 src/DynamicQuerySample.DbMigrator/Logs/*
+src/DynamicQuerySample.Blazor.Server/Logs/*
+src/DynamicQuerySample.Blazor.Server.Tiered/Logs/*

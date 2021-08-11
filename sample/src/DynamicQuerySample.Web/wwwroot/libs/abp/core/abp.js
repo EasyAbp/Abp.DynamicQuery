@@ -153,7 +153,7 @@ var abp = abp || {};
 
         for (var i = 0; i < packageMap.length; i++) {
             var map = packageMap[i];
-            if (map.name === language) {
+            if (map.name === language){
                 return map.value;
             }
         }
@@ -595,42 +595,20 @@ var abp = abp || {};
 
             if (parameterInfo.value.toJSON && typeof parameterInfo.value.toJSON === "function") {
                 qs = qs + parameterInfo.name + '=' + encodeURIComponent(parameterInfo.value.toJSON());
-            } else if (typeof parameterInfo.value === 'object') {
-                qs = qs + abp.utils.serializeToQueryString(parameterInfo.value, parameterInfo.name);
+            } else if (Array.isArray(parameterInfo.value) && parameterInfo.value.length) {
+                for (var j = 0; j < parameterInfo.value.length; j++) {
+                    if (j > 0) {
+                        addSeperator();
+                    }
+
+                    qs = qs + parameterInfo.name + '[' + j + ']=' + encodeURIComponent(parameterInfo.value[j]);
+                }
             } else {
                 qs = qs + parameterInfo.name + '=' + encodeURIComponent(parameterInfo.value);
             }
         }
 
         return qs;
-    }
-
-    /**
-     * Serialize any object to a query string
-     * @param obj
-     * @param prefix
-     */
-    abp.utils.serializeToQueryString = function (obj, prefix) {
-        var str = [];
-        for (var prop in obj) {
-            if (obj.hasOwnProperty(prop)) {
-                var name;
-                if (prefix) {
-                    if (Array.isArray(obj)) {
-                        name = prefix + "[" + prop + "]";
-                    } else {
-                        name = prefix + "." + prop;
-                    }
-                } else {
-                    name = prop;
-                }
-                var value = obj[prop];
-                str.push((value !== null && typeof value === "object") ?
-                    abp.utils.serializeToQueryString(value, name) :
-                    encodeURIComponent(name) + "=" + encodeURIComponent(value));
-            }
-        }
-        return str.join("&");
     }
 
     /**
@@ -706,12 +684,19 @@ var abp = abp || {};
         document.cookie = cookieValue;
     }
 
+    /**
+     * Escape HTML to help prevent XSS attacks. 
+     */
+    abp.utils.htmlEscape = function (html) {
+        return typeof html === 'string' ? html.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;') : html;
+    }
+
     /* SECURITY ***************************************/
     abp.security = abp.security || {};
     abp.security.antiForgery = abp.security.antiForgery || {};
 
     abp.security.antiForgery.tokenCookieName = 'XSRF-TOKEN';
-    abp.security.antiForgery.tokenHeaderName = 'X-XSRF-TOKEN';
+    abp.security.antiForgery.tokenHeaderName = 'RequestVerificationToken';
 
     abp.security.antiForgery.getToken = function () {
         return abp.utils.getCookieValue(abp.security.antiForgery.tokenCookieName);
@@ -772,5 +757,20 @@ var abp = abp || {};
             return toUtc(date);
         }
     };
+    
+    /* FEATURES *************************************************/
 
+    abp.features = abp.features || {};
+
+    abp.features.values = abp.features.values || {};
+
+    abp.features.isEnabled = function(name){
+        var value = abp.features.get(name);
+        return value == 'true' || value == 'True';
+    }
+
+    abp.features.get = function (name) {
+        return abp.features.values[name];
+    };
+    
 })();

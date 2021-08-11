@@ -24,9 +24,9 @@ namespace DynamicQuerySample
         typeof(AbpIdentityServerDomainSharedModule),
         typeof(AbpPermissionManagementDomainSharedModule),
         typeof(AbpSettingManagementDomainSharedModule),
-        typeof(AbpTenantManagementDomainSharedModule)
-        )]
-    [DependsOn(typeof(DynamicQueryDomainSharedModule))]
+        typeof(AbpTenantManagementDomainSharedModule),
+        typeof(DynamicQueryDomainSharedModule)
+    )]
     public class DynamicQuerySampleDomainSharedModule : AbpModule
     {
         public override void PreConfigureServices(ServiceConfigurationContext context)

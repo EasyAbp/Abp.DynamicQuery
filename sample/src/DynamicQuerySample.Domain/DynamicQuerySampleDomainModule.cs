@@ -28,9 +28,9 @@ namespace DynamicQuerySample
         typeof(AbpPermissionManagementDomainIdentityServerModule),
         typeof(AbpSettingManagementDomainModule),
         typeof(AbpTenantManagementDomainModule),
-        typeof(AbpEmailingModule)
+        typeof(AbpEmailingModule),
+        typeof(DynamicQueryDomainModule)
     )]
-    [DependsOn(typeof(DynamicQueryDomainModule))]
     public class DynamicQuerySampleDomainModule : AbpModule
     {
         public override void ConfigureServices(ServiceConfigurationContext context)

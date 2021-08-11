@@ -25,9 +25,9 @@ namespace DynamicQuerySample.EntityFrameworkCore
         typeof(AbpBackgroundJobsEntityFrameworkCoreModule),
         typeof(AbpAuditLoggingEntityFrameworkCoreModule),
         typeof(AbpTenantManagementEntityFrameworkCoreModule),
-        typeof(AbpFeatureManagementEntityFrameworkCoreModule)
-        )]
-    [DependsOn(typeof(DynamicQueryEntityFrameworkCoreModule))]
+        typeof(AbpFeatureManagementEntityFrameworkCoreModule),
+        typeof(DynamicQueryEntityFrameworkCoreModule)
+    )]
     public class DynamicQuerySampleEntityFrameworkCoreModule : AbpModule
     {
         public override void PreConfigureServices(ServiceConfigurationContext context)

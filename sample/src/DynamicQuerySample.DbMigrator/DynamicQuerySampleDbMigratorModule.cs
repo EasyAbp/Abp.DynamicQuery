@@ -7,7 +7,7 @@ namespace DynamicQuerySample.DbMigrator
 {
     [DependsOn(
         typeof(AbpAutofacModule),
-        typeof(DynamicQuerySampleEntityFrameworkCoreDbMigrationsModule),
+        typeof(DynamicQuerySampleEntityFrameworkCoreModule),
         typeof(DynamicQuerySampleApplicationContractsModule)
         )]
     public class DynamicQuerySampleDbMigratorModule : AbpModule

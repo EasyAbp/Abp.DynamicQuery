@@ -11,7 +11,7 @@ using Volo.Abp.Modularity;
 namespace DynamicQuerySample.EntityFrameworkCore
 {
     [DependsOn(
-        typeof(DynamicQuerySampleEntityFrameworkCoreDbMigrationsModule),
+        typeof(DynamicQuerySampleEntityFrameworkCoreModule),
         typeof(DynamicQuerySampleTestBaseModule),
         typeof(AbpEntityFrameworkCoreSqliteModule)
         )]
@@ -47,11 +47,11 @@ namespace DynamicQuerySample.EntityFrameworkCore
             var connection = new SqliteConnection("Data Source=:memory:");
             connection.Open();
 
-            var options = new DbContextOptionsBuilder<DynamicQuerySampleMigrationsDbContext>()
+            var options = new DbContextOptionsBuilder<DynamicQuerySampleDbContext>()
                 .UseSqlite(connection)
                 .Options;
 
-            using (var context = new DynamicQuerySampleMigrationsDbContext(options))
+            using (var context = new DynamicQuerySampleDbContext(options))
             {
                 context.GetService<IRelationalDatabaseCreator>().CreateTables();
             }

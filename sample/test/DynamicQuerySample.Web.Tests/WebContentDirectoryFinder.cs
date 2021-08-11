@@ -13,21 +13,32 @@ namespace DynamicQuerySample
     {
         public static string CalculateContentRootFolder()
         {
-            var domainAssemblyDirectoryPath = Path.GetDirectoryName(typeof(DynamicQuerySampleDomainModule).Assembly.Location);
+            var domainAssemblyDirectoryPath =
+                Path.GetDirectoryName(typeof(DynamicQuerySampleDomainModule).Assembly.Location);
             if (domainAssemblyDirectoryPath == null)
             {
-                throw new Exception($"Could not find location of {typeof(DynamicQuerySampleDomainModule).Assembly.FullName} assembly!");
+                throw new Exception(
+                    $"Could not find location of {typeof(DynamicQuerySampleDomainModule).Assembly.FullName} assembly!");
             }
 
             var directoryInfo = new DirectoryInfo(domainAssemblyDirectoryPath);
-            while (!DirectoryContains(directoryInfo.FullName, "DynamicQuerySample.sln"))
+
+            if (Environment.GetEnvironmentVariable("NCrunch") == "1")
             {
-                if (directoryInfo.Parent == null)
+                while (!DirectoryContains(directoryInfo.FullName, "DynamicQuerySample.Web.csproj", SearchOption.AllDirectories))
                 {
-                    throw new Exception("Could not find content root folder!");
+                    directoryInfo = directoryInfo.Parent ?? throw new Exception("Could not find content root folder!");
                 }
 
-                directoryInfo = directoryInfo.Parent;
+                var webProject = Directory.GetFiles(directoryInfo.FullName, string.Empty, SearchOption.AllDirectories)
+                    .First(filePath => string.Equals(Path.GetFileName(filePath), "DynamicQuerySample.Web.csproj"));
+
+                return Path.GetDirectoryName(webProject);
+            }
+
+            while (!DirectoryContains(directoryInfo.FullName, "DynamicQuerySample.sln"))
+            {
+                directoryInfo = directoryInfo.Parent ?? throw new Exception("Could not find content root folder!");
             }
 
             var webFolder = Path.Combine(directoryInfo.FullName, $"src{Path.DirectorySeparatorChar}DynamicQuerySample.Web");
@@ -39,9 +50,11 @@ namespace DynamicQuerySample
             throw new Exception("Could not find root folder of the web project!");
         }
 
-        private static bool DirectoryContains(string directory, string fileName)
+        private static bool DirectoryContains(string directory, string fileName,
+            SearchOption searchOption = SearchOption.TopDirectoryOnly)
         {
-            return Directory.GetFiles(directory).Any(filePath => string.Equals(Path.GetFileName(filePath), fileName));
+            return Directory.GetFiles(directory, string.Empty, searchOption)
+                .Any(filePath => string.Equals(Path.GetFileName(filePath), fileName));
         }
     }
 }

@@ -65,7 +65,7 @@ namespace DynamicQuerySample
                   });
 
              * See the documentation for more:
-             * https://docs.abp.io/en/latest/Module-Entity-Extensions
+             * https://docs.abp.io/en/abp/latest/Module-Entity-Extensions
              */
         }
     }

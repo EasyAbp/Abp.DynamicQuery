@@ -1,4 +1,4 @@
-namespace DynamicQuerySample.Web.Menus
+﻿namespace DynamicQuerySample.Web.Menus
 {
     public class DynamicQuerySampleMenus
     {

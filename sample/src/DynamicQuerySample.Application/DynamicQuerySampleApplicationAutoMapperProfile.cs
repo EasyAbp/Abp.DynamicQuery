@@ -1,4 +1,4 @@
-using DynamicQuerySample.Books;
+﻿using DynamicQuerySample.Books;
 using DynamicQuerySample.Books.Dtos;
 using AutoMapper;
 

@@ -7,18 +7,18 @@ namespace DynamicQuerySample.EntityFrameworkCore
 {
     /* This class is needed for EF Core console commands
      * (like Add-Migration and Update-Database commands) */
-    public class DynamicQuerySampleMigrationsDbContextFactory : IDesignTimeDbContextFactory<DynamicQuerySampleMigrationsDbContext>
+    public class DynamicQuerySampleDbContextFactory : IDesignTimeDbContextFactory<DynamicQuerySampleDbContext>
     {
-        public DynamicQuerySampleMigrationsDbContext CreateDbContext(string[] args)
+        public DynamicQuerySampleDbContext CreateDbContext(string[] args)
         {
             DynamicQuerySampleEfCoreEntityExtensionMappings.Configure();
 
             var configuration = BuildConfiguration();
 
-            var builder = new DbContextOptionsBuilder<DynamicQuerySampleMigrationsDbContext>()
+            var builder = new DbContextOptionsBuilder<DynamicQuerySampleDbContext>()
                 .UseSqlServer(configuration.GetConnectionString("Default"));
 
-            return new DynamicQuerySampleMigrationsDbContext(builder.Options);
+            return new DynamicQuerySampleDbContext(builder.Options);
         }
 
         private static IConfigurationRoot BuildConfiguration()
