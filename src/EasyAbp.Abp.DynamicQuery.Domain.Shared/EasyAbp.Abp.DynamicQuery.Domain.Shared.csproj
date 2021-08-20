@@ -4,20 +4,11 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>EasyAbp.Abp.DynamicQuery</RootNamespace>
+    <RootNamespace />
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Volo.Abp.Validation" Version="4.4.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="5.0.*" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="Localization\DynamicQuery\*.json" />
-    <Content Remove="Localization\DynamicQuery\*.json" />
+    <PackageReference Include="Volo.Abp.Validation" Version="$(AbpVersion)" />
   </ItemGroup>
 
 </Project>
