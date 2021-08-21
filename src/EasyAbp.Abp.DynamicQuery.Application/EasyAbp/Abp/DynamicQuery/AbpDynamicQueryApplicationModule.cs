@@ -6,19 +6,19 @@ using Volo.Abp.Application;
 namespace EasyAbp.Abp.DynamicQuery
 {
     [DependsOn(
-        typeof(DynamicQueryDomainModule),
-        typeof(DynamicQueryApplicationContractsModule),
+        typeof(AbpDynamicQueryDomainModule),
+        typeof(AbpDynamicQueryApplicationContractsModule),
         typeof(AbpDddApplicationModule),
         typeof(AbpAutoMapperModule)
         )]
-    public class DynamicQueryApplicationModule : AbpModule
+    public class AbpDynamicQueryApplicationModule : AbpModule
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
-            context.Services.AddAutoMapperObjectMapper<DynamicQueryApplicationModule>();
+            context.Services.AddAutoMapperObjectMapper<AbpDynamicQueryApplicationModule>();
             Configure<AbpAutoMapperOptions>(options =>
             {
-                options.AddMaps<DynamicQueryApplicationModule>(validate: true);
+                options.AddMaps<AbpDynamicQueryApplicationModule>(validate: true);
             });
         }
     }

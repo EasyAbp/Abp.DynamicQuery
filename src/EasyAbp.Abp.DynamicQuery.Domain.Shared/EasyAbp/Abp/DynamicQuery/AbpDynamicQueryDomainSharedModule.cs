@@ -2,7 +2,7 @@
 
 namespace EasyAbp.Abp.DynamicQuery
 {
-    public class DynamicQueryDomainSharedModule : AbpModule
+    public class AbpDynamicQueryDomainSharedModule : AbpModule
     {
     }
 }

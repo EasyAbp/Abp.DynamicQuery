@@ -25,7 +25,7 @@ namespace DynamicQuerySample
         typeof(AbpPermissionManagementDomainSharedModule),
         typeof(AbpSettingManagementDomainSharedModule),
         typeof(AbpTenantManagementDomainSharedModule),
-        typeof(DynamicQueryDomainSharedModule)
+        typeof(AbpDynamicQueryDomainSharedModule)
     )]
     public class DynamicQuerySampleDomainSharedModule : AbpModule
     {

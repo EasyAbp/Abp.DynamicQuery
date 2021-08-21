@@ -8,7 +8,7 @@ namespace EasyAbp.Abp.DynamicQuery.EntityFrameworkCore
 {
     [DependsOn(
         typeof(DynamicQueryTestBaseModule),
-        typeof(DynamicQueryEntityFrameworkCoreModule),
+        typeof(AbpDynamicQueryEntityFrameworkCoreModule),
         typeof(AbpEntityFrameworkCoreSqliteModule)
     )]
     public class DynamicQueryEntityFrameworkCoreTestModule : AbpModule

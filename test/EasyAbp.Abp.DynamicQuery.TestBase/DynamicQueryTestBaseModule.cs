@@ -12,7 +12,7 @@ namespace EasyAbp.Abp.DynamicQuery
         typeof(AbpAutofacModule),
         typeof(AbpTestBaseModule),
         typeof(AbpAuthorizationModule),
-        typeof(DynamicQueryDomainModule)
+        typeof(AbpDynamicQueryDomainModule)
         )]
     public class DynamicQueryTestBaseModule : AbpModule
     {

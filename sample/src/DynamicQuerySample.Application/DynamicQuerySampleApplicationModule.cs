@@ -19,7 +19,7 @@ namespace DynamicQuerySample
         typeof(AbpTenantManagementApplicationModule),
         typeof(AbpFeatureManagementApplicationModule),
         typeof(AbpSettingManagementApplicationModule),
-        typeof(DynamicQueryApplicationModule)
+        typeof(AbpDynamicQueryApplicationModule)
     )]
     public class DynamicQuerySampleApplicationModule : AbpModule
     {
