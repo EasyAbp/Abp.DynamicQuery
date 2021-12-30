@@ -5,7 +5,7 @@ namespace DynamicQuerySample.Controllers
 {
     /* Inherit your controllers from this class.
      */
-    public abstract class DynamicQuerySampleController : AbpController
+    public abstract class DynamicQuerySampleController : AbpControllerBase
     {
         protected DynamicQuerySampleController()
         {

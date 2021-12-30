@@ -6,6 +6,7 @@ using Volo.Abp.Modularity;
 using Volo.Abp.PermissionManagement;
 using Volo.Abp.TenantManagement;
 using Volo.Abp.SettingManagement;
+using Volo.Abp.VirtualFileSystem;
 
 namespace DynamicQuerySample
 {
@@ -28,6 +29,11 @@ namespace DynamicQuerySample
                 typeof(DynamicQuerySampleApplicationContractsModule).Assembly,
                 RemoteServiceName
             );
+            
+            Configure<AbpVirtualFileSystemOptions>(options =>
+            {
+                options.FileSets.AddEmbedded<DynamicQuerySampleApplicationContractsModule>();
+            });
         }
     }
 }

@@ -19,9 +19,9 @@ namespace DynamicQuerySample.Books
             _repository = repository;
         }
 
-        protected override IQueryable<Book> CreateFilteredQuery(GetListInput input)
+        protected override Task<IQueryable<Book>> CreateFilteredQueryAsync(GetListInput input)
         {
-            return _repository.ExecuteDynamicQuery(input.FilterGroup);
+            return Task.FromResult(_repository.ExecuteDynamicQuery(input.FilterGroup));
         }
 
         [HttpPost]    // Need this for receiving dynamic query parameters 

@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using EasyAbp.Abp.DynamicQuery.Dtos;
 using EasyAbp.Abp.DynamicQuery.Extensions;
 using EasyAbp.Abp.DynamicQuery.Filters;
@@ -13,23 +13,22 @@ namespace EasyAbp.Abp.DynamicQuery
     {
         private readonly Regex _regFieldName = new Regex(@"^[a-zA-Z_][a-zA-Z0-9_]*$", RegexOptions.Compiled);
 
-        public void AddErrors(ObjectValidationContext context)
+        public Task AddErrorsAsync(ObjectValidationContext context)
         {
-            if (!(context.ValidatingObject is IDynamicQueryInput dynamicQueryInput))
+            if (context.ValidatingObject is not IDynamicQueryInput dynamicQueryInput)
             {
-                return;
+                return Task.CompletedTask;
             }
-            
-            if (dynamicQueryInput.FilterGroup != null)
+
+            dynamicQueryInput.FilterGroup?.Travel((_, condition) =>
             {
-                dynamicQueryInput.FilterGroup.Travel((_, condition) =>
+                if (!_regFieldName.IsMatch(condition.FieldName))
                 {
-                    if (!_regFieldName.IsMatch(condition.FieldName))
-                    {
-                        context.Errors.Add( new ValidationResult($"InvalidFieldName: {condition.FieldName}", new[] {nameof(DynamicQueryCondition.FieldName)}));
-                    }
-                });
-            }
+                    context.Errors.Add(new ValidationResult($"InvalidFieldName: {condition.FieldName}", new[] {nameof(DynamicQueryCondition.FieldName)}));
+                }
+            });
+            
+            return Task.CompletedTask;
         }
     }
 }
