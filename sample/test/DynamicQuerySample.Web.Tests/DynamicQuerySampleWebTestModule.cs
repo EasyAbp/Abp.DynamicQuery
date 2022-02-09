@@ -27,7 +27,7 @@ namespace DynamicQuerySample
         {
             context.Services.PreConfigure<IMvcBuilder>(builder =>
             {
-                builder.PartManager.ApplicationParts.Add(new AssemblyPart(typeof(DynamicQuerySampleWebModule).Assembly));
+                builder.PartManager.ApplicationParts.Add(new CompiledRazorAssemblyPart(typeof(DynamicQuerySampleWebModule).Assembly));
             });
         }
 
