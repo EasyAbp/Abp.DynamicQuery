@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="3.1.6" />
     <ProjectReference Include="..\..\src\EasyAbp.Abp.DynamicQuery.EntityFrameworkCore\EasyAbp.Abp.DynamicQuery.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\EasyAbp.Abp.DynamicQuery.TestBase\EasyAbp.Abp.DynamicQuery.TestBase.csproj" />
