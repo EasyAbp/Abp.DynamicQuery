@@ -8,15 +8,8 @@ using Volo.Abp.AspNetCore.TestBase;
 
 namespace DynamicQuerySample
 {
-    public abstract class DynamicQuerySampleWebTestBase : AbpAspNetCoreIntegratedTestBase<DynamicQuerySampleWebTestStartup>
+    public abstract class DynamicQuerySampleWebTestBase : AbpWebApplicationFactoryIntegratedTest<DynamicQuerySampleWebTestStartup>
     {
-        protected override IHostBuilder CreateHostBuilder()
-        {
-            return base
-                .CreateHostBuilder()
-                .UseContentRoot(WebContentDirectoryFinder.CalculateContentRootFolder());
-        }
-
         protected virtual async Task<T> GetResponseAsObjectAsync<T>(string url, HttpStatusCode expectedStatusCode = HttpStatusCode.OK)
         {
             var strResponse = await GetResponseAsStringAsync(url, expectedStatusCode);
