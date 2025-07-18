@@ -11,8 +11,7 @@
 @inject IHtmlLocalizer<DynamicQuerySampleResource> L
 @inject IAuthorizationService Authorization
 @{
-    PageLayout.Content.Title = L["Book"].Value;
-    PageLayout.Content.BreadCrumb.Add(L["Menu:Book"].Value);
+    PageLayout.Content.Title = L["Menu:Book"].Value;
     PageLayout.Content.MenuItemName = DynamicQuerySampleMenus.Book;
 }
 
@@ -26,21 +25,16 @@
     <abp-style src="/Pages/Books/Book/index.css"/>
     <abp-style src="/libs/jQuery-QueryBuilder/css/query-builder.default.css" />
 }
+@section content_toolbar
+{
+    <abp-button id="NewBookButton"
+                text="@L["CreateBook"].Value"
+                icon="plus"
+                size="Small"
+                button-type="Primary" />
+}
 
 <abp-card>
-    <abp-card-header>
-        <abp-row>
-            <abp-column size-md="_6">
-                <abp-card-title>@L["Book"]</abp-card-title>
-            </abp-column>
-            <abp-column size-md="_6" class="text-right">
-                <abp-button id="NewBookButton"
-                            text="@L["CreateBook"].Value"
-                            icon="plus"
-                            button-type="Primary" />
-            </abp-column>
-        </abp-row>
-    </abp-card-header>
     <abp-card-body>
         <div id="QueryBuilder"></div>
         <abp-button button-type="Primary" id="Search">@L["Search"]</abp-button>
