@@ -4,5 +4,9 @@ namespace EasyAbp.Abp.DynamicQuery
 {
     public abstract class DynamicQueryAppService : ApplicationService
     {
+        protected DynamicQueryAppService()
+        {
+            ObjectMapperContext = typeof(AbpDynamicQueryApplicationModule);
+        }
     }
 }
