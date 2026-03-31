@@ -9,7 +9,7 @@ using DynamicQuerySample.EntityFrameworkCore;
 using DynamicQuerySample.Localization;
 using DynamicQuerySample.MultiTenancy;
 using DynamicQuerySample.Web.Menus;
-using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi;
 using Volo.Abp;
 using Volo.Abp.Account.Web;
 using Volo.Abp.AspNetCore.Authentication.JwtBearer;
