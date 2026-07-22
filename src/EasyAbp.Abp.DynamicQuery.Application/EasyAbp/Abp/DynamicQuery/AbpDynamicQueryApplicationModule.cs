@@ -1,5 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Volo.Abp.AutoMapper;
+using Microsoft.Extensions.DependencyInjection;
+using Volo.Abp.Mapperly;
 using Volo.Abp.Modularity;
 using Volo.Abp.Application;
 
@@ -9,17 +9,13 @@ namespace EasyAbp.Abp.DynamicQuery
         typeof(AbpDynamicQueryDomainModule),
         typeof(AbpDynamicQueryApplicationContractsModule),
         typeof(AbpDddApplicationModule),
-        typeof(AbpAutoMapperModule)
+        typeof(AbpMapperlyModule)
         )]
     public class AbpDynamicQueryApplicationModule : AbpModule
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
-            context.Services.AddAutoMapperObjectMapper<AbpDynamicQueryApplicationModule>();
-            Configure<AbpAutoMapperOptions>(options =>
-            {
-                options.AddMaps<AbpDynamicQueryApplicationModule>(validate: true);
-            });
+            context.Services.AddMapperlyObjectMapper<AbpDynamicQueryApplicationModule>();
         }
     }
 }
