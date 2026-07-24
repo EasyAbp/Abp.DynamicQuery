@@ -18,12 +18,25 @@ namespace DynamicQuerySample.Books
         }
 
         public Book(
-            Guid id, 
-            string name, 
-            BookType type, 
-            DateTime publishDate, 
+            Guid id,
+            string name,
+            BookType type,
+            DateTime publishDate,
             float price
         ) : base(id)
+        {
+            Name = name;
+            Type = type;
+            PublishDate = publishDate;
+            Price = price;
+        }
+
+        public void Update(
+            string name,
+            BookType type,
+            DateTime publishDate,
+            float price
+        )
         {
             Name = name;
             Type = type;

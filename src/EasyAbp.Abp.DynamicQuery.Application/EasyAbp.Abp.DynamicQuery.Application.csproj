@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Volo.Abp.AutoMapper" Version="$(AbpVersion)" />
+    <PackageReference Include="Volo.Abp.Mapperly" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.Ddd.Application" Version="$(AbpVersion)" />
     <ProjectReference Include="..\EasyAbp.Abp.DynamicQuery.Application.Contracts\EasyAbp.Abp.DynamicQuery.Application.Contracts.csproj" />
     <ProjectReference Include="..\EasyAbp.Abp.DynamicQuery.Domain\EasyAbp.Abp.DynamicQuery.Domain.csproj" />
